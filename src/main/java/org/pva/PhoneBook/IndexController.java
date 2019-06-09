@@ -5,6 +5,10 @@ import org.pva.PhoneBook.domain.ContactRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class IndexController {
@@ -15,18 +19,50 @@ public class IndexController {
         this.contactRepo = contactRepo;
     }
 
-//    public MainController(PersonRepository personService) {
-//        this.persons = personService;
-//    }
-
     @GetMapping("/")
-    public String index(Model model) {
-//        List<Person> personList = (List<Person>) persons.findAll();
-//        model.addAttribute("persons", personList);
-        Contact contact = new Contact("Иван", "Иванов");
+    public String index(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
+        List<Contact> contacts = (List<Contact>) contactRepo.findAll();
+
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("name", name);
+        return "main";
+    }
+
+    @PostMapping("addContact")
+    public String addContact(@RequestParam(name = "firstName", required = true) String firstName,
+                             @RequestParam(name = "lastName", required = true) String lastName,
+                             Model model) {
+        Contact contact = new Contact(firstName, lastName);
         contactRepo.save(contact);
 
-        return "index";
+        List<Contact> contacts = (List<Contact>) contactRepo.findAll();
+
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("name", "user");
+        return "main";
+    }
+
+    @PostMapping("filter")
+    public String filterContacts(@RequestParam(name = "firstName", required = true) String firstName,
+                                 @RequestParam(name = "lastName", required = true) String lastName,
+                                 Model model) {
+
+        Iterable<Contact> contacts = contactRepo.findAll();
+        if (!((firstName == null || firstName.equals("")) && (lastName == null || lastName.equals("")))) {
+          if (firstName == null || firstName.equals("")) {
+            contacts = contactRepo.findByLastName(lastName);
+          } else if (lastName == null || lastName.equals("")) {
+              contacts = contactRepo.findByFirstName(firstName);
+          } else {
+              contacts = contactRepo.findByFirstNameAndLastName(firstName, lastName);
+          }
+        }
+
+
+
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("name", "user");
+        return "main";
     }
 
 }

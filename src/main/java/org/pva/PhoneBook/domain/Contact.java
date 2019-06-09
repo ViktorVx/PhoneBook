@@ -1,13 +1,12 @@
 package org.pva.PhoneBook.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Contact {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
 
     @Column

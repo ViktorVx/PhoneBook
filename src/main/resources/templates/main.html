@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PhoneBook</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Phone book</h1>
+        <h2 th:text = "'Hello ' +  ${name} + '!'"></h2>
+        <div>
+            <h3>Add new contact</h3>
+            <form method="post" action="addContact" >
+                First name<input type="text" name="firstName" placeholder="Enter name"/>
+                Last name<input type="text" name="lastName" placeholder="Enter last name"/>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <div>
+            <h3>Filter contacts</h3>
+            <form method="post" action="filter">
+                First name<input type="text" name="firstName" placeholder="Enter name"/>
+                Last name<input type="text" name="lastName" placeholder="Enter last name"/>
+                <button type="submit">Find</button>
+            </form>
+        </div>
+        <table>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+            <tr th:each="contact : ${contacts}">
+                <td th:text="${contact.firstName}"></td>
+                <td th:text="${contact.lastName}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
