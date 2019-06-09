@@ -1,21 +1,19 @@
-package org.pva.PhoneBook;
+package org.pva.PhoneBook.controller;
 
 import org.pva.PhoneBook.domain.Contact;
 import org.pva.PhoneBook.domain.ContactRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-public class IndexController {
+public class MainController {
 
     private final ContactRepo contactRepo;
 
-    public IndexController(ContactRepo contactRepo) {
+    public MainController(ContactRepo contactRepo) {
         this.contactRepo = contactRepo;
     }
 
@@ -28,7 +26,7 @@ public class IndexController {
         return "main";
     }
 
-    @PostMapping("addContact")
+    @RequestMapping(value = "addContact", method = RequestMethod.POST)
     public String addContact(@RequestParam(name = "firstName") String firstName,
                              @RequestParam(name = "lastName") String lastName,
                              Model model) {
@@ -42,7 +40,7 @@ public class IndexController {
         return "main";
     }
 
-    @PostMapping("filter")
+    @RequestMapping(value = "filter", method = RequestMethod.POST)
     public String filterContacts(@RequestParam(name = "firstName") String firstName,
                                  @RequestParam(name = "lastName") String lastName,
                                  Model model) {
