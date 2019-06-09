@@ -19,7 +19,7 @@ public class IndexController {
         this.contactRepo = contactRepo;
     }
 
-    @GetMapping("/")
+    @GetMapping("/main")
     public String index(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
         List<Contact> contacts = (List<Contact>) contactRepo.findAll();
 
@@ -29,8 +29,8 @@ public class IndexController {
     }
 
     @PostMapping("addContact")
-    public String addContact(@RequestParam(name = "firstName", required = true) String firstName,
-                             @RequestParam(name = "lastName", required = true) String lastName,
+    public String addContact(@RequestParam(name = "firstName") String firstName,
+                             @RequestParam(name = "lastName") String lastName,
                              Model model) {
         Contact contact = new Contact(firstName, lastName);
         contactRepo.save(contact);
@@ -43,8 +43,8 @@ public class IndexController {
     }
 
     @PostMapping("filter")
-    public String filterContacts(@RequestParam(name = "firstName", required = true) String firstName,
-                                 @RequestParam(name = "lastName", required = true) String lastName,
+    public String filterContacts(@RequestParam(name = "firstName") String firstName,
+                                 @RequestParam(name = "lastName") String lastName,
                                  Model model) {
 
         Iterable<Contact> contacts = contactRepo.findAll();
