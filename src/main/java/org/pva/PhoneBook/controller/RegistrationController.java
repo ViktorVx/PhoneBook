@@ -1,6 +1,5 @@
 package org.pva.PhoneBook.controller;
 
-import org.hibernate.mapping.Collection;
 import org.pva.PhoneBook.domain.Role;
 import org.pva.PhoneBook.domain.User;
 import org.pva.PhoneBook.domain.UserRepo;
