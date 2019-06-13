@@ -13,6 +13,9 @@
             <form method="post" action="addContact" >
                 First name<input type="text" name="firstName" placeholder="Enter name"/>
                 Last name<input type="text" name="lastName" placeholder="Enter last name"/>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
                 <button type="submit">Send</button>
             </form>
         </div>
@@ -21,6 +24,9 @@
             <form method="post" action="filter">
                 First name<input type="text" name="firstName" placeholder="Enter name"/>
                 Last name<input type="text" name="lastName" placeholder="Enter last name"/>
+                <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
                 <button type="submit">Find</button>
             </form>
         </div>

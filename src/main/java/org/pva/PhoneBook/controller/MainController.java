@@ -20,13 +20,13 @@ public class MainController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/main")
     public String index(Model model) {
         return "enter";
     }
 
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String index(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
         List<Contact> contacts = (List<Contact>) contactRepo.findAll();
 
@@ -35,7 +35,7 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping(value = "addContact", method = RequestMethod.POST)
+    @PostMapping(value = "addContact")
     public String addContact(
             @AuthenticationPrincipal User user,
             @RequestParam(name = "firstName") String firstName,
