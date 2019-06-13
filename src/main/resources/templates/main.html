@@ -21,12 +21,9 @@
         </div>
         <div>
             <h3>Filter contacts</h3>
-            <form method="post" action="#" th:action="@{/filter}">
+            <form method="get" action="#" th:action="@{/filter}">
                 First name<input type="text" name="firstName" placeholder="Enter name"/>
                 Last name<input type="text" name="lastName" placeholder="Enter last name"/>
-                <input type="hidden"
-                       name="${_csrf.parameterName}"
-                       value="${_csrf.token}"/>
                 <button type="submit">Find</button>
             </form>
         </div>

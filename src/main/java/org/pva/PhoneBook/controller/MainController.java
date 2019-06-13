@@ -52,7 +52,7 @@ public class MainController {
         return "main";
     }
 
-    @RequestMapping(value = "filter", method = RequestMethod.POST)
+    @RequestMapping(value = "filter", method = RequestMethod.GET)
     public String filterContacts(@RequestParam(name = "firstName") String firstName,
                                  @RequestParam(name = "lastName") String lastName,
                                  Model model) {
