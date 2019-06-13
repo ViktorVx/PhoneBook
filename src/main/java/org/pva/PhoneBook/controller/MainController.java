@@ -1,7 +1,7 @@
 package org.pva.PhoneBook.controller;
 
 import org.pva.PhoneBook.domain.Contact;
-import org.pva.PhoneBook.domain.ContactRepo;
+import org.pva.PhoneBook.repository.ContactRepo;
 import org.pva.PhoneBook.domain.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

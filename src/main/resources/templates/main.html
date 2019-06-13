@@ -8,6 +8,7 @@
     <div class="header">
         <h1>Phone book</h1>
         <h2 th:text = "'Hello ' +  ${name} + '!'"></h2>
+        <a th:href="@{/user}" th:text="'User list'"></a>
         <div>
             <h3>Add new contact</h3>
             <form method="post" action="#" th:action="@{/addContact}">

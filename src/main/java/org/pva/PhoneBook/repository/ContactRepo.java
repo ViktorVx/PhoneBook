@@ -1,5 +1,6 @@
-package org.pva.PhoneBook.domain;
+package org.pva.PhoneBook.repository;
 
+import org.pva.PhoneBook.domain.Contact;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

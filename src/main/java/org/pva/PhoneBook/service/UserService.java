@@ -1,6 +1,6 @@
 package org.pva.PhoneBook.service;
 
-import org.pva.PhoneBook.domain.UserRepo;
+import org.pva.PhoneBook.repository.UserRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

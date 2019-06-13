@@ -5,9 +5,17 @@
     <title>User edit</title>
 </head>
 <body>
-<!--    <form th:action="@{/user}" method="post">-->
-<!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-<!--        <button type="submit">Save</button>-->
-<!--    </form>-->
+    <form th:action="@{/user}" method="post">
+
+        <input type="text" th:value="${user.id}" th:name="userId"/><br>
+        <input type="text" th:value="${user.username}" th:name="userName"/>
+
+        <div th:each="role : ${user.roles}">
+            <input type="checkbox" name="${role}" th:text="${role}">
+        </div>
+
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <button type="submit">Save</button>
+    </form>
 </body>
 </html>

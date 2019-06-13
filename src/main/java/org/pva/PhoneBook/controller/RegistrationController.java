@@ -2,7 +2,7 @@ package org.pva.PhoneBook.controller;
 
 import org.pva.PhoneBook.domain.Role;
 import org.pva.PhoneBook.domain.User;
-import org.pva.PhoneBook.domain.UserRepo;
+import org.pva.PhoneBook.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
