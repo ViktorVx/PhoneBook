@@ -13,9 +13,7 @@
             <form method="post" action="#" th:action="@{/addContact}">
                 First name<input type="text" name="firstName" placeholder="Enter name"/>
                 Last name<input type="text" name="lastName" placeholder="Enter last name"/>
-                <input type="hidden"
-                       name="${_csrf.parameterName}"
-                       value="${_csrf.token}"/>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <button type="submit">Send</button>
             </form>
         </div>
@@ -31,6 +29,7 @@
             <tr>
                 <th>First name</th>
                 <th>Last name</th>
+                <th>Owner</th>
             </tr>
             <tr th:each="contact : ${contacts}">
                 <td th:text="${contact.firstName}"></td>
