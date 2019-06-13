@@ -7,11 +7,11 @@
 <body>
     <form th:action="@{/user}" method="post">
 
-        <input type="text" th:value="${user.id}" th:name="userId"/><br>
-        <input type="text" th:value="${user.username}" th:name="userName"/>
+        <input type="hidden" th:value="${user.id}" th:name="userId"/><br>
+        <input type="text" th:value="${user.username}" th:name="username"/>
 
         <div th:each="role : ${roles}">
-            <input type="checkbox" name="${role}" th:text="${role}"  th:checked="${#arrays.contains(user.roles, role)}">
+            <input type="checkbox" th:name="${role}" th:text="${role}"  th:checked="${#arrays.contains(user.roles, role)}">
         </div>
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
