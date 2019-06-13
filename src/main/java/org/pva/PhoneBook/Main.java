@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration
 public class Main {
 
+    //todo add thymeleaf templates
+
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }

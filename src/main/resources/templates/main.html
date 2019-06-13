@@ -38,6 +38,7 @@
             <tr th:each="contact : ${contacts}">
                 <td th:text="${contact.firstName}"></td>
                 <td th:text="${contact.lastName}"></td>
+                <td th:text="${contact.ownerName}"></td>
             </tr>
         </table>
     </div>

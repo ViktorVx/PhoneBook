@@ -31,6 +31,11 @@ public class Contact {
         return owner;
     }
 
+    public String getOwnerName() {
+        if (owner == null) return "None";
+        return owner.getUsername();
+    }
+
     public void setOwner(User owner) {
         this.owner = owner;
     }
