@@ -10,8 +10,8 @@
         <input type="text" th:value="${user.id}" th:name="userId"/><br>
         <input type="text" th:value="${user.username}" th:name="userName"/>
 
-        <div th:each="role : ${user.roles}">
-            <input type="checkbox" name="${role}" th:text="${role}">
+        <div th:each="role : ${roles}">
+            <input type="checkbox" name="${role}" th:text="${role}"  th:checked="${#arrays.contains(user.roles, role)}">
         </div>
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
