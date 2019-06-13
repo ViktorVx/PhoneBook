@@ -15,12 +15,24 @@ public class Contact {
     @Column
     String lastName;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    User owner;
+
     public Contact() {
     }
 
     public Contact(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public long getId() {

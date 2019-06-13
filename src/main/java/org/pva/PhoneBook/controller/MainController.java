@@ -2,6 +2,8 @@ package org.pva.PhoneBook.controller;
 
 import org.pva.PhoneBook.domain.Contact;
 import org.pva.PhoneBook.domain.ContactRepo;
+import org.pva.PhoneBook.domain.User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,13 @@ public class MainController {
         this.contactRepo = contactRepo;
     }
 
+
+    @GetMapping("/")
+    public String index(Model model) {
+        return "enter";
+    }
+
+
     @GetMapping("/main")
     public String index(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
         List<Contact> contacts = (List<Contact>) contactRepo.findAll();
@@ -27,10 +36,14 @@ public class MainController {
     }
 
     @RequestMapping(value = "addContact", method = RequestMethod.POST)
-    public String addContact(@RequestParam(name = "firstName") String firstName,
-                             @RequestParam(name = "lastName") String lastName,
-                             Model model) {
+    public String addContact(
+            @AuthenticationPrincipal User user,
+            @RequestParam(name = "firstName") String firstName,
+            @RequestParam(name = "lastName") String lastName,
+            Model model) {
+
         Contact contact = new Contact(firstName, lastName);
+        contact.setOwner(user);
         contactRepo.save(contact);
 
         List<Contact> contacts = (List<Contact>) contactRepo.findAll();
