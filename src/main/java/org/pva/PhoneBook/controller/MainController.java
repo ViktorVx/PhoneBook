@@ -20,22 +20,21 @@ public class MainController {
     }
 
 
-    @GetMapping("/main")
-    public String index(Model model) {
+    @RequestMapping("/main")
+    public String main() {
         return "enter";
     }
 
 
-    @GetMapping("/")
-    public String index(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
+    @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
+    public String index(Model model) {
         List<Contact> contacts = (List<Contact>) contactRepo.findAll();
 
         model.addAttribute("contacts", contacts);
-        model.addAttribute("name", name);
         return "main";
     }
 
-    @PostMapping(value = "addContact")
+    @RequestMapping(value = "addContact", method = RequestMethod.POST)
     public String addContact(
             @AuthenticationPrincipal User user,
             @RequestParam(name = "firstName") String firstName,
