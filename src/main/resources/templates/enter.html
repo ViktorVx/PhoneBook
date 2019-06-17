@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-    <a href="/login">Enter to login-page</a>
+    <a href="/login">Enter to login-page</a><br>
+    <a th:href="@{/}" th:text="'Main page'"></a><br>
+    <a th:href="@{/user}" th:text="'User list'"></a><br>
+    <a th:href="@{/uploads}" th:text="'Uploads'"></a>
 </body>
 </html>
