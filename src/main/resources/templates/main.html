@@ -12,9 +12,10 @@
         <a th:href="@{/uploads}" th:text="'Uploads'"></a>
         <div>
             <h3>Add new contact</h3>
-            <form method="post" action="#" th:action="@{/addContact}">
+            <form method="post" action="#" th:action="@{/addContact}" enctype="multipart/form-data">
                 First name<input type="text" name="firstName" placeholder="Enter name"/>
                 Last name<input type="text" name="lastName" placeholder="Enter last name"/>
+                <input type="file" name="file">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <button type="submit">Send</button>
             </form>
@@ -32,11 +33,18 @@
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Owner</th>
+                <th>Header</th>
             </tr>
             <tr th:each="contact : ${contacts}">
                 <td th:text="${contact.firstName}"></td>
                 <td th:text="${contact.lastName}"></td>
                 <td th:text="${contact.ownerName}"></td>
+                <td>
+                    <div>
+                        <img th:src="'/img/' + ${contact.photoPath}">
+<!--                        <img src="/img/${contact.photoPath}">-->
+                    </div>
+                </td>
             </tr>
         </table>
     </div>

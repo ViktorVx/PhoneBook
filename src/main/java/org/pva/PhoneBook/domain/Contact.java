@@ -19,6 +19,8 @@ public class Contact {
     @JoinColumn(name = "user_id")
     User owner;
 
+    private String photoPath;
+
     public Contact() {
     }
 
@@ -62,5 +64,13 @@ public class Contact {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 }

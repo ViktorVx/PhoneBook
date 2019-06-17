@@ -1,5 +1,6 @@
 package org.pva.PhoneBook.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,6 +20,9 @@ import java.util.Locale;
 @ComponentScan(basePackages = "org.pva.PhoneBook")
 public class MvcConfig implements WebMvcConfigurer {
 
+    @Value("${upload.path}")
+    private String uploadPath;
+
     public void addViewControllers(ViewControllerRegistry registry) {
 //        registry.addViewController("/home").setViewName("home");
 //        registry.addViewController("/").setViewName("home");
@@ -36,7 +40,8 @@ public class MvcConfig implements WebMvcConfigurer {
                 "/js/**")
                 .addResourceLocations(
                         "classpath:/META-INF/resources/webjars/",
-                        "classpath:/static/img/",
+                        "file://" + uploadPath + "/",
+//                        "classpath:/static/img/",
                         "classpath:/static/css/",
                         "classpath:/static/js/");
     }

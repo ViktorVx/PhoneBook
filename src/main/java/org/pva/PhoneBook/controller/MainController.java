@@ -3,15 +3,23 @@ package org.pva.PhoneBook.controller;
 import org.pva.PhoneBook.domain.Contact;
 import org.pva.PhoneBook.repository.ContactRepo;
 import org.pva.PhoneBook.domain.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class MainController {
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     private final ContactRepo contactRepo;
 
@@ -39,9 +47,28 @@ public class MainController {
             @AuthenticationPrincipal User user,
             @RequestParam(name = "firstName") String firstName,
             @RequestParam(name = "lastName") String lastName,
-            Model model) {
+            @RequestParam("file") MultipartFile file,
+            Model model) throws IOException {
 
         Contact contact = new Contact(firstName, lastName);
+        //***
+        if (file != null) {
+            File uploadDir = new File(uploadPath);
+            System.out.println(uploadPath);
+            if (!uploadDir.exists()) {
+                System.out.println("No folder");
+                uploadDir.mkdir();
+            }
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName= uuidFile + "." + file.getOriginalFilename();
+            System.out.println(uploadDir + "/" + resultFileName);
+
+//            file.transferTo(new File(resultFileName));
+            file.transferTo(new File(uploadDir + "/" + resultFileName));
+
+            contact.setPhotoPath(resultFileName);
+        }
+        //***
         contact.setOwner(user);
         contactRepo.save(contact);
 
