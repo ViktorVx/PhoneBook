@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <div th:insert="~{fragments/bootstrap :: bs-head}"></div>
     <title>User list</title>
 </head>
 <body>
-<table>
-    <tr>
-        <th>User</th>
-        <th>Roles</th>
-        <th>Edit</th>
-    </tr>
-    <tr th:each="user : ${userList}">
-        <td th:text="${user.username}"></td>
-        <td th:text="${user.roles}"></td>
-        <td><a th:href="@{'/user/' + ${user.id}}" th:text="Edit"></a></td>
-    </tr>
-</table>
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Roles</th>
+            <th>Edit</th>
+        </tr>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.roles}"></td>
+            <td><a th:href="@{'/user/' + ${user.id}}" th:text="Edit"></a></td>
+        </tr>
+    </table>
+    <div th:insert="~{fragments/bootstrap :: bs-scripts}"></div>
 </body>
 </html>

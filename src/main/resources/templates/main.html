@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <div th:insert="~{fragments/bootstrap :: bs-head}"></div>
     <title>PhoneBook</title>
 </head>
 <body>
+<div th:insert="~{fragments/navbar :: navbar}"></div>
     <div class="header">
         <h1>Phone book</h1>
         <h2 th:text = "'Hello ' +  ${name} + '!'"></h2>
@@ -51,5 +52,7 @@
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out"/>
     </form>
+
+    <div th:insert="~{fragments/bootstrap :: bs-scripts}"></div>
 </body>
 </html>
