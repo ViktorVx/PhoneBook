@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <body>
 <div th:fragment="navbar" >
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -10,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/user}" th:text="'Users list'"></a>
+                    <a sec:authorize="hasAuthority('ADMIN')" class="nav-link" th:href="@{/user}" th:text="'Users list'"></a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
