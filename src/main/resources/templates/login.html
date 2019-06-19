@@ -12,16 +12,25 @@
     <div th:if="${param.logout}">
         You have been logged out.
     </div>
-    Login page
     <form th:action="@{/login}" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
+        <div class="form-group col-md-4 mt-1">
+            <label for="username">User Name</label>
+            <input class="form-control" type="text" name="username" id="username"/>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password"/>
+        </div>
         <input type="hidden"
                name="${_csrf.parameterName}"
                value="${_csrf.token}"/>
-        <div><input type="submit" value="Sign In"/></div>
+        <div>
+            <button type="submit" class="btn btn-primary ml-3">Sign in</button>
+        </div>
     </form>
-    <a href = "/registration">Add new user</a>
+    <a class="ml-3" href = "/registration">Add new user</a>
+
+
     <div th:insert="~{fragments/bootstrap :: bs-scripts}"></div>
 </body>
 </html>

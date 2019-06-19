@@ -13,8 +13,6 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
-import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import java.util.Locale;
 
@@ -75,12 +73,5 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
-
-//    @Bean
-//    public SpringTemplateEngine templateEngine() {
-//        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-//        templateEngine.addDialect(new SpringSecurityDialect());
-//        return templateEngine;
-//    }
 
 }
