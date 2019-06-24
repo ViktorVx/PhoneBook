@@ -1,6 +1,7 @@
 package org.pva.PhoneBook.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Contact {
@@ -13,6 +14,7 @@ public class Contact {
     String firstName;
 
     @Column
+    @NotBlank(message = "Enter last name!")
     String lastName;
 
     @ManyToOne(fetch = FetchType.EAGER)
