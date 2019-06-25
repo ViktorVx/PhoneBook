@@ -22,7 +22,6 @@
  );
 
  create table user_role (
-    id int8 not null,
     user_id int8 not null,
     roles varchar(255)
  );
@@ -42,6 +41,6 @@ insert into usr (id, active, "password", username) values
     (1, true, '1', 'admin'),
     (2, true, '123', 'user');
 
-insert into user_role (id, user_id, roles) values
-    (1, 1, 'ADMIN'),
-    (2, 2, 'USER');
+insert into user_role (user_id, roles) values
+    (1, 'ADMIN'),
+    (2, 'USER');

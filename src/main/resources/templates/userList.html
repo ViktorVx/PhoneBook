@@ -6,12 +6,16 @@
 </head>
 <body>
     <div th:insert="~{fragments/navbar :: navbar}"></div>
-    <table>
-        <tr>
-            <th>User</th>
-            <th>Roles</th>
-            <th>Edit</th>
-        </tr>
+    <h1 class="text-center">Admin page</h1>
+    <button type="button" class="btn btn-primary ml-1">New user</button>
+    <table class="table table-hover table-bordered ml-1 mt-1">
+        <thead>
+            <tr class="thead-dark">
+                <th scope="col">User</th>
+                <th scope="col">Roles</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
         <tr th:each="user : ${userList}">
             <td th:text="${user.username}"></td>
             <td th:text="${user.roles}"></td>
