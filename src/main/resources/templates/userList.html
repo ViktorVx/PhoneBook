@@ -11,12 +11,14 @@
     <table class="table table-hover table-bordered ml-1 mt-1">
         <thead>
             <tr class="thead-dark">
+                <th scope="col">#</th>
                 <th scope="col">User</th>
                 <th scope="col">Roles</th>
                 <th scope="col">Edit</th>
             </tr>
         </thead>
         <tr th:each="user : ${userList}">
+            <td th:text="${userStat.count}"></td>
             <td th:text="${user.username}"></td>
             <td th:text="${user.roles}"></td>
             <td><a th:href="@{'/user/' + ${user.id}}" th:text="Edit"></a></td>
