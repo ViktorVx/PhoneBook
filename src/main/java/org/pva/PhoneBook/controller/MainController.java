@@ -35,9 +35,20 @@ public class MainController {
 
 
     @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-    public String index(Model model) {
-        List<Contact> contacts = (List<Contact>) contactRepo.findAll();
-
+    public String index(@RequestParam(name = "firstName", defaultValue = "", required = false) String firstName,
+                        @RequestParam(name = "lastName", defaultValue = "", required = false) String lastName,
+                        Model model) {
+        //***
+        Iterable<Contact> contacts = contactRepo.findAll();
+        if (!((firstName == null || firstName.equals("")) && (lastName == null || lastName.equals("")))) {
+            if (firstName == null || firstName.equals("")) {
+                contacts = contactRepo.findByLastName(lastName);
+            } else if (lastName == null || lastName.equals("")) {
+                contacts = contactRepo.findByFirstName(firstName);
+            } else {
+                contacts = contactRepo.findByFirstNameAndLastName(firstName, lastName);
+            }
+        }
         model.addAttribute("contacts", contacts);
         return "main";
     }
@@ -45,8 +56,8 @@ public class MainController {
     @RequestMapping(value = "addContact", method = RequestMethod.POST)
     public String addContact(
             @AuthenticationPrincipal User user,
-            @RequestParam(name = "firstName") String firstName,
-            @RequestParam(name = "lastName") String lastName,
+            @RequestParam(name = "firstName", defaultValue = "", required = false) String firstName,
+            @RequestParam(name = "lastName", defaultValue = "", required = false) String lastName,
             @RequestParam("file") MultipartFile file,
             Model model) throws IOException {
 
@@ -73,29 +84,6 @@ public class MainController {
         contactRepo.save(contact);
 
         List<Contact> contacts = (List<Contact>) contactRepo.findAll();
-
-        model.addAttribute("contacts", contacts);
-        model.addAttribute("name", "user");
-        return "main";
-    }
-
-    @RequestMapping(value = "filter", method = RequestMethod.GET)
-    public String filterContacts(@RequestParam(name = "firstName") String firstName,
-                                 @RequestParam(name = "lastName") String lastName,
-                                 Model model) {
-
-        Iterable<Contact> contacts = contactRepo.findAll();
-        if (!((firstName == null || firstName.equals("")) && (lastName == null || lastName.equals("")))) {
-          if (firstName == null || firstName.equals("")) {
-            contacts = contactRepo.findByLastName(lastName);
-          } else if (lastName == null || lastName.equals("")) {
-              contacts = contactRepo.findByFirstName(firstName);
-          } else {
-              contacts = contactRepo.findByFirstNameAndLastName(firstName, lastName);
-          }
-        }
-
-
 
         model.addAttribute("contacts", contacts);
         model.addAttribute("name", "user");
