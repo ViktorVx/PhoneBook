@@ -63,7 +63,7 @@ public class MainController {
 
         Contact contact = new Contact(firstName, lastName);
         //***
-        if (file != null) {
+        if (!file.isEmpty()) {
             File uploadDir = new File(uploadPath);
             System.out.println(uploadPath);
             if (!uploadDir.exists()) {
