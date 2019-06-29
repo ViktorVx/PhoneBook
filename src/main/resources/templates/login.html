@@ -6,10 +6,10 @@
 </head>
 <body>
     <div th:insert="~{fragments/navbar :: navbar}"></div>
-    <main>
-        <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div class="container">
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
@@ -30,7 +30,7 @@
             </div>
         </form>
         <a class="ml-3" href = "/registration">Add new user</a>
-    </main>
+    </div>
 
     <div th:insert="~{fragments/bootstrap :: bs-scripts}"></div>
 </body>
