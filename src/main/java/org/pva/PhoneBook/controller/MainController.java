@@ -35,7 +35,8 @@ public class MainController {
 
 
     @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-    public String index(@RequestParam(name = "firstName", defaultValue = "", required = false) String firstName,
+    public String index(@AuthenticationPrincipal User user,
+                        @RequestParam(name = "firstName", defaultValue = "", required = false) String firstName,
                         @RequestParam(name = "lastName", defaultValue = "", required = false) String lastName,
                         Model model) {
         //***
@@ -50,6 +51,7 @@ public class MainController {
             }
         }
         model.addAttribute("contacts", contacts);
+        model.addAttribute("user", user);
         return "main";
     }
 

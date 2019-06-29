@@ -35,6 +35,7 @@ public class UserService implements UserDetailsService {
         if (userFromDb != null) {
             return false;
         }
+//        user.setPassword();
         user.setActive(false);
         user.setRoles(Collections.singleton(Role.USER));
         //***

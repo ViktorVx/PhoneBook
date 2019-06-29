@@ -7,7 +7,8 @@
     <title>PhoneBook</title>
 </head>
 <body>
-<div th:insert="~{fragments/navbar :: navbar}"></div>
+<!--<div th:insert="~{fragments/navbar :: navbar (username=${username})}"></div>-->
+<div th:insert="fragments/navbar :: navbar (user=${user})"></div>
 <main>
     <div class="container-fluid ml-1 mt-1">
         <div class="header">
