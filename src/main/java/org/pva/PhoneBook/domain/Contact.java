@@ -11,6 +11,7 @@ public class Contact {
     Long id;
 
     @Column
+    @NotBlank(message = "Please, enter first name!") //bean validation
     String firstName;
 
     @Column

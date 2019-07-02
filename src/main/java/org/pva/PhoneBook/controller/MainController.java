@@ -3,6 +3,8 @@ package org.pva.PhoneBook.controller;
 import org.pva.PhoneBook.domain.Contact;
 import org.pva.PhoneBook.repository.ContactRepo;
 import org.pva.PhoneBook.domain.User;
+import org.pva.PhoneBook.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -23,8 +25,11 @@ public class MainController {
 
     private final ContactRepo contactRepo;
 
-    public MainController(ContactRepo contactRepo) {
+    private final UserService userService;
+
+    public MainController(ContactRepo contactRepo, UserService userService) {
         this.contactRepo = contactRepo;
+        this.userService = userService;
     }
 
 
@@ -92,11 +97,20 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/profile")
+    @GetMapping("/profile")
     public String profile(@AuthenticationPrincipal User user,
                           Model model) {
         model.addAttribute("user", user);
         return "profile";
+    }
+
+    @PostMapping("profile")
+    public String updateProfile(@AuthenticationPrincipal User user,
+                                @RequestParam String password,
+                                @RequestParam String email) {
+
+        userService.updateUser(user, password, email);
+        return "redirect:/profile";
     }
 
 }
