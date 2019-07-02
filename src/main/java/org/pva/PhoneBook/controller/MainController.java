@@ -92,4 +92,11 @@ public class MainController {
         return "main";
     }
 
+    @PostMapping("/profile")
+    public String profile(@AuthenticationPrincipal User user,
+                          Model model) {
+        model.addAttribute("user", user);
+        return "profile";
+    }
+
 }

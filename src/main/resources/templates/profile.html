@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <div th:insert="~{fragments/bootstrap :: bs-head}"></div>
+    <title th:text="${user.username} + ' profile'"></title>
+</head>
+<body>
+<div th:insert="fragments/navbar :: navbar (user=${user})"></div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form>
+                <div class="col-6">
+<!--                    <div th:if="${param.error}">-->
+<!--                        Invalid username and password.-->
+<!--                    </div>-->
+<!--                    <div th:if="${param.logout}">-->
+<!--                        You have been logged out.-->
+<!--                    </div>-->
+                    <h3 th:text="'Edit user: ' + ${user.username}"></h3>
+                    <p th:text="${message}"></p>
+                    <form th:action="@{/registration}" method="post">
+                        <div class="form-group">
+                            <label for="userName">User Name</label>
+                            <input class="form-control" th:value="${user.username}" type="text" name="username" id="userName"/>
+                        </div>
+                        <div class="from-group">
+                            <label for="lastName">Password</label>
+                            <input class="form-control" th:value="${user.password}" type="password" name="password" id="lastName"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" th:value="${user.email}" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Sign In</button>
+                    </form>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:insert="~{fragments/bootstrap :: bs-scripts}"></div>
+</body>
+</html>
