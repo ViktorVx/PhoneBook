@@ -30,11 +30,26 @@
                 <div class="col-10">
                     <div>
                         <form method="post" action="#" th:action="@{/addContact}" enctype="multipart/form-data">
-                            First name<input type="text" name="firstName" placeholder="Enter name"/>
-                            Last name<input type="text" name="lastName" placeholder="Enter last name"/>
-                            <input type="file" name="file">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <button type="submit">Send</button>
+                            <div class="form-row">
+                                <div class="col-2">
+                                    <input type="text" th:class="'form-control ' + ${firstNameError == null ? '' : 'is-invalid'}"
+                                           th:value="${contact!=null ? contact.firstName : ''}" name="firstName" placeholder="Enter name" required/>
+                                    <div th:if="${firstNameError != null}" th:text="${firstNameError}" class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-2">
+                                    <input type="text" th:class="'form-control ' + ${lastNameError == null ? '' : 'is-invalid'}"
+                                           th:value="${contact!=null ? contact.lastName : ''}" name="lastName" placeholder="Enter last name" required/>
+                                    <div th:if="${lastNameError != null}" th:text="${lastNameError}" class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-4 custom-file">
+                                    <input type="file" class="custom-file-input" name="file" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-primary" type="submit">Add</button>
+                                </div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </div>
                         </form>
                     </div>
 
