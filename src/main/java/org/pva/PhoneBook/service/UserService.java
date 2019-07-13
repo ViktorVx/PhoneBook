@@ -4,6 +4,7 @@ import org.pva.PhoneBook.domain.Role;
 import org.pva.PhoneBook.domain.User;
 import org.pva.PhoneBook.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,6 +17,9 @@ import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
+
+    @Value("${hostname}")
+    private String hostname;
 
     @Autowired
     MailSender mailSender;
@@ -55,8 +59,8 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format("Hello, %s!\n" +
                     "Welcome to Phonebook!\n" +
-                    "Please, visit this link for account activation: http://localhost:8080/activation/%s",
-                    user.getUsername(), user.getActivationCode());
+                    "Please, visit this link for account activation: http://%s/activation/%s",
+                    user.getUsername(), hostname, user.getActivationCode());
 //            String message = "Это тестовая информация! Не нужно фильтровать ее как спам!!!";
             mailSender.send(user.getEmail(), "Activation code", message);
         }
