@@ -39,7 +39,11 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Contact> contacts;
+
     public User() {
+
     }
 
 //    public String getPassword2() {
@@ -49,6 +53,15 @@ public class User implements UserDetails {
 //    public void setPassword2(String password2) {
 //        this.password2 = password2;
 //    }
+
+
+    public Set<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
+    }
 
     public String getEmail() {
         return email;
