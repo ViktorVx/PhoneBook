@@ -1,0 +1,1 @@
+truncate contact cascade;

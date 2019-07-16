@@ -33,16 +33,16 @@
                             <div class="form-row">
                                 <div class="col-2">
                                     <input type="text" th:class="'form-control ' + ${firstNameError == null ? '' : 'is-invalid'}"
-                                           th:value="${contact!=null ? contact.firstName : ''}" name="firstName" placeholder="Enter name" required/>
+                                           th:value="${contact!=null ? contact.firstName : ''}" name="firstName" placeholder="Enter name" required="required"/>
                                     <div th:if="${firstNameError != null}" th:text="${firstNameError}" class="invalid-feedback"></div>
                                 </div>
                                 <div class="col-2">
                                     <input type="text" th:class="'form-control ' + ${lastNameError == null ? '' : 'is-invalid'}"
-                                           th:value="${contact!=null ? contact.lastName : ''}" name="lastName" placeholder="Enter last name" required/>
+                                           th:value="${contact!=null ? contact.lastName : ''}" name="lastName" placeholder="Enter last name" required="required"/>
                                     <div th:if="${lastNameError != null}" th:text="${lastNameError}" class="invalid-feedback"></div>
                                 </div>
                                 <div class="col-4 custom-file">
-                                    <input type="file" class="custom-file-input" name="file" id="customFile">
+                                    <input type="file" class="custom-file-input" name="file" id="customFile"/>
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                                 <div class="col">
@@ -53,7 +53,7 @@
                         </form>
                     </div>
 
-                    <table class="table table-hover table-bordered mt-1">
+                    <table class="table table-hover table-bordered mt-1" id="contacts-table">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
@@ -64,10 +64,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="contact : ${contacts}">
+                        <tr th:each="contact : ${contacts}" th:data-id="${contact.id}">
                             <td th:text="${contactStat.count}"></td>
-                            <td th:text="${contact.firstName}"></td>
-                            <td th:text="${contact.lastName}"></td>
+                            <td th:text="${contact.firstName}" data-id="1"></td>
+                            <td th:text="${contact.lastName}" data-id="2"></td>
                             <td th:text="${contact.ownerName}"></td>
                             <td>
                                 <img th:if="${contact.photoPath != null}" th:src="'/img/' + ${contact.photoPath}" width="300" height="200">
